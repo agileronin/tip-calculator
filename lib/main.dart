@@ -32,11 +32,24 @@ class TipCalculator extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       TipAmountInput(),
-                      Text('TIP PERCENTAGE'),
-                      PercentageButton(),
-                      PercentageButton(),
-                      PercentageButton(),
-                      Text('CUSTOM AMOUNT'),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+                        child: TextHeader(
+                          text: 'Tip Percentage',
+                        ),
+                      ),
+                      PercentageButton(buttonText: '10%'),
+                      PercentageButton(buttonText: '15%'),
+                      PercentageButton(
+                        buttonText: '20%',
+                        selected: true,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
+                        child: TextHeader(text: 'Custom Amount',)
+                      ),
                       CustomTipSlider(),
                     ],
                   ),

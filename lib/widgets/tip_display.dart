@@ -21,15 +21,16 @@ class TipDisplay extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '\$21.90',
+              '\$0.00',
               style: TextStyle(
                 color: Color(0xFFF9FDFE),
-                fontSize: 50.0,
+                fontFamily: 'Lato',
+                fontSize: 100.0,
                 letterSpacing: 5.0,
               ),
             ),
             Container(
-              width: 35.0,
+              width: 50.0,
               child: Divider(
                 color: Colors.white,
                 thickness: 1.5,
@@ -39,9 +40,10 @@ class TipDisplay extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  '\$108.25',
+                  '\$0.00',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato',
                     color: Colors.white,
                   ),
                 ),
@@ -52,6 +54,7 @@ class TipDisplay extends StatelessWidget {
                   'TOTAL',
                   style: TextStyle(
                     fontSize: 12.0,
+                    fontFamily: 'Lato',
                     color: Colors.white,
                   ),
                 )
@@ -64,6 +67,7 @@ class TipDisplay extends StatelessWidget {
                   '20%',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato',
                     color: Colors.white,
                   ),
                 ),
@@ -74,6 +78,7 @@ class TipDisplay extends StatelessWidget {
                   'TIP',
                   style: TextStyle(
                     fontSize: 12.0,
+                    fontFamily: 'Lato',
                     color: Colors.white,
                   ),
                 )
