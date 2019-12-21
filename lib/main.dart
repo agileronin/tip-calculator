@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 import './widgets/widgets.dart';
 
@@ -11,6 +12,8 @@ void main() {
 class TipCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -46,10 +49,11 @@ class TipCalculator extends StatelessWidget {
                         selected: true,
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
-                        child: TextHeader(text: 'Custom Amount',)
-                      ),
+                          padding:
+                              const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
+                          child: TextHeader(
+                            text: 'Custom Amount',
+                          )),
                       CustomTipSlider(),
                     ],
                   ),
