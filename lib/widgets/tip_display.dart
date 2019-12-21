@@ -21,14 +21,15 @@ class TipDisplay extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '\$0.00',
+              '\$1,000,000.00',
               style: TextStyle(
                 color: Color(0xFFF9FDFE),
                 fontFamily: 'Lato',
-                fontSize: 100.0,
+                fontSize: 50.0,
                 letterSpacing: 5.0,
               ),
             ),
+            SizedBox(height: 12.0,),
             Container(
               width: 50.0,
               child: Divider(
@@ -36,56 +37,69 @@ class TipDisplay extends StatelessWidget {
                 thickness: 1.5,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '\$0.00',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Lato',
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  'TOTAL',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontFamily: 'Lato',
-                    color: Colors.white,
-                  ),
-                )
-              ],
+            SizedBox(height: 12.0,),
+            TipSubText(
+              amount: '\$1,000,000.00',
+              label: 'Total',
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '20%',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Lato',
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  'TIP',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontFamily: 'Lato',
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            )
+            TipSubText(
+              amount: '\$1.25',
+              label: 'Tip (\$)',
+            ),
+            TipSubText(
+              amount: '20%',
+              label: 'Tip (%)',
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TipSubText extends StatelessWidget {
+  final String amount;
+  final String label;
+
+  TipSubText({@required this.amount, @required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerRight,
+              child: Text(
+                amount,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  fontFamily: 'Lato',
+                  color: Colors.white,
+                ),
+                // ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              // padding: EdgeInsets.all(10.0),
+              child: Text(
+                label.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontFamily: 'Lato',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
