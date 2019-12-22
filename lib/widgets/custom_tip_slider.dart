@@ -3,15 +3,15 @@ import './transparent_round_slider.dart';
 
 class CustomTipSlider extends StatefulWidget {
   final Function onSlide;
+  final double currentValue;
 
-  CustomTipSlider({@required this.onSlide});
+  CustomTipSlider({@required this.onSlide, @required this.currentValue});
 
   @override
   _CustomTipSliderState createState() => _CustomTipSliderState();
 }
 
 class _CustomTipSliderState extends State<CustomTipSlider> {
-  double _value = 0.0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,12 +34,13 @@ class _CustomTipSliderState extends State<CustomTipSlider> {
               child: Slider(
                   min: 0.0,
                   max: 100.0,
-                  value: _value,
-                  label: _value.toString(),
+                  divisions: 100,
+                  value: widget.currentValue,
+                  // label: _value.toString(),
                   onChanged: (percentage) {
                     setState(() {
-                      widget.onSlide(double.parse(percentage.toStringAsFixed(2)));
-                      _value = double.parse(percentage.toStringAsFixed(2));
+                      widget.onSlide(double.parse(percentage.toStringAsFixed(0)));
+                      // _value = double.parse(percentage.toStringAsFixed(0));
                     });
                   }),
             ),

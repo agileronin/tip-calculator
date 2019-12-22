@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 import './widgets/widgets.dart';
 
@@ -15,13 +16,38 @@ class TipCalculator extends StatefulWidget {
 }
 
 class _TipCalculatorState extends State<TipCalculator> {
-  double _tipPercentage = 0.0;
+  double _tipPercentage = 15.0;
   double _tip = 0.0;
   double _amount = 0.0;
   double _total = 0.0;
+  MoneyMaskedTextController _amountInputController;
+
+  @override
+  void initState() {
+    super.initState();
+    this._amountInputController = MoneyMaskedTextController(
+      leftSymbol: '\$',
+      decimalSeparator: '.',
+      precision: 2,
+      thousandSeparator: ',',
+      initialValue: 0.00,
+    );
+  }
+
+  void _calculateTip() {
+    _tip = (_amount * _tipPercentage) / 100.0;
+    _total = _amount + _tip;
+  }
 
   @override
   Widget build(BuildContext context) {
+    _amountInputController.afterChange = (String _, double amountInput) {
+      setState(() {
+        _amount = amountInput;
+        _calculateTip();
+      });
+    };
+
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return GestureDetector(
@@ -32,7 +58,9 @@ class _TipCalculatorState extends State<TipCalculator> {
         }
       },
       child: MaterialApp(
-        theme: ThemeData.light().copyWith(),
+        theme: ThemeData.light().copyWith(
+          brightness: Brightness.light,
+        ),
         home: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Container(
@@ -50,11 +78,11 @@ class _TipCalculatorState extends State<TipCalculator> {
                   child: Column(
                     children: <Widget>[
                       TipAmountInput(
+                        controller: _amountInputController,
                         amountChanged: (value) {
                           setState(() {
-                            _amount = double.parse(value);
-                            _tip = (_amount * _tipPercentage) / 100.0;
-                            _total = _amount + _tip;
+                            _amount = value;
+                            _calculateTip();
                           });
                         },
                       ),
@@ -71,8 +99,7 @@ class _TipCalculatorState extends State<TipCalculator> {
                         onPressed: () {
                           setState(() {
                             _tipPercentage = 10.0;
-                            _tip = (_amount * _tipPercentage) / 100.0;
-                            _total = _amount + _tip;
+                            _calculateTip();
                           });
                         },
                       ),
@@ -82,8 +109,7 @@ class _TipCalculatorState extends State<TipCalculator> {
                         onPressed: () {
                           setState(() {
                             _tipPercentage = 15.0;
-                            _tip = (_amount * _tipPercentage) / 100.0;
-                            _total = _amount + _tip;
+                            _calculateTip();
                           });
                         },
                       ),
@@ -93,8 +119,7 @@ class _TipCalculatorState extends State<TipCalculator> {
                         onPressed: () {
                           setState(() {
                             _tipPercentage = 20.0;
-                            _tip = (_amount * _tipPercentage) / 100.0;
-                            _total = _amount + _tip;
+                            _calculateTip();
                           });
                         },
                       ),
@@ -105,11 +130,11 @@ class _TipCalculatorState extends State<TipCalculator> {
                             text: 'Custom Amount',
                           )),
                       CustomTipSlider(
+                        currentValue: _tipPercentage,
                         onSlide: (value) {
                           setState(() {
                             _tipPercentage = value;
-                            _tip = (_amount * _tipPercentage) / 100.0;
-                            _total = _amount + _tip;
+                            _calculateTip();
                           });
                         },
                       ),

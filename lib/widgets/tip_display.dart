@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import './tip_sub_text.dart';
+import 'package:intl/intl.dart';
 
 class TipDisplay extends StatelessWidget {
   final double tipPercent;
   final double amount;
   final double tip;
   final double total;
+  final NumberFormat currencyFormat;
+  final NumberFormat percentageFormat;
   TipDisplay(
       {@required this.tipPercent,
       @required this.amount,
       @required this.tip,
-      @required this.total});
+      @required this.total})
+      : this.currencyFormat =
+            NumberFormat.currency(locale: 'en_US', symbol: '\$'),
+        this.percentageFormat = NumberFormat.percentPattern('en_US');
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class TipDisplay extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '\$$total',
+              this.currencyFormat.format(total),
               style: TextStyle(
                 color: Color(0xFFF9FDFE),
                 fontFamily: 'Lato',
@@ -54,15 +60,16 @@ class TipDisplay extends StatelessWidget {
               height: 12.0,
             ),
             TipSubText(
-              amount: '\$$amount',
+              amount: currencyFormat.format(amount),
               label: 'Total',
             ),
             TipSubText(
-              amount: '\$$tip',
+              amount: currencyFormat.format(tip),
               label: 'Tip (\$)',
             ),
             TipSubText(
-              amount: '$tipPercent%',
+              // amount: '$tipPercent%',
+              amount: percentageFormat.format(tipPercent / 100.0),
               label: 'Tip (%)',
             ),
           ],

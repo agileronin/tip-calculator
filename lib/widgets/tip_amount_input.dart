@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 
 class TipAmountInput extends StatelessWidget {
   final Function amountChanged;
+  final TextEditingController controller;
 
-  TipAmountInput({@required this.amountChanged});
-
+  TipAmountInput({@required this.amountChanged, @required this.controller});
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       color: Colors.white,
       child: TextFormField(
+        controller: controller,
         cursorColor: Color(0xFF939BA0),
-        onChanged: (data) {
-          amountChanged(data);
-        },
         style: TextStyle(
-          // fontSize: 20.0,
           fontWeight: FontWeight.bold,
           color: Color(0xFF939BA0),
         ),
