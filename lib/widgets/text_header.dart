@@ -12,7 +12,7 @@ class TextHeader extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: 'Lato',
-        color: Color(0xFF939BA0),
+        color: Color(0xFF939BA0).withOpacity(0.6),
       ),
     );
   }

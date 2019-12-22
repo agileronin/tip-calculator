@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import './tip_sub_text.dart';
 
 class TipDisplay extends StatelessWidget {
+  final double tipPercent;
+  final double amount;
+  final double tip;
+  final double total;
+  TipDisplay(
+      {@required this.tipPercent,
+      @required this.amount,
+      @required this.tip,
+      @required this.total});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +32,7 @@ class TipDisplay extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '\$1,000,000.00',
+              '\$$total',
               style: TextStyle(
                 color: Color(0xFFF9FDFE),
                 fontFamily: 'Lato',
@@ -29,7 +40,9 @@ class TipDisplay extends StatelessWidget {
                 letterSpacing: 5.0,
               ),
             ),
-            SizedBox(height: 12.0,),
+            SizedBox(
+              height: 12.0,
+            ),
             Container(
               width: 50.0,
               child: Divider(
@@ -37,69 +50,23 @@ class TipDisplay extends StatelessWidget {
                 thickness: 1.5,
               ),
             ),
-            SizedBox(height: 12.0,),
+            SizedBox(
+              height: 12.0,
+            ),
             TipSubText(
-              amount: '\$1,000,000.00',
+              amount: '\$$amount',
               label: 'Total',
             ),
             TipSubText(
-              amount: '\$1.25',
+              amount: '\$$tip',
               label: 'Tip (\$)',
             ),
             TipSubText(
-              amount: '20%',
+              amount: '$tipPercent%',
               label: 'Tip (%)',
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class TipSubText extends StatelessWidget {
-  final String amount;
-  final String label;
-
-  TipSubText({@required this.amount, @required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              alignment: Alignment.centerRight,
-              child: Text(
-                amount,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  fontFamily: 'Lato',
-                  color: Colors.white,
-                ),
-                // ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              // padding: EdgeInsets.all(10.0),
-              child: Text(
-                label.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontFamily: 'Lato',
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

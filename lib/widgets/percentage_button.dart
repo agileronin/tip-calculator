@@ -9,8 +9,12 @@ const BACKGROUND_COLOR_UNSELECTED = Colors.transparent;
 class PercentageButton extends StatelessWidget {
   final String buttonText;
   final bool selected;
+  final Function onPressed;
 
-  PercentageButton({@required this.buttonText, this.selected = false});
+  PercentageButton(
+      {@required this.buttonText,
+      @required this.onPressed,
+      this.selected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +31,14 @@ class PercentageButton extends StatelessWidget {
       width: double.infinity,
       child: FlatButton(
         splashColor: Colors.transparent,
-        onPressed: () {},
+        onPressed: () => this.onPressed(),
         child: Text(
           this.buttonText,
           style: TextStyle(
-            color: selected ? TEXT_COLOR_SELECTED : TEXT_COLOR_UNSELECTED,
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato'
-          ),
+              color: selected ? TEXT_COLOR_SELECTED : TEXT_COLOR_UNSELECTED,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Lato'),
         ),
       ),
     );
