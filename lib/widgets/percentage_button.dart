@@ -6,11 +6,13 @@ class PercentageButton extends StatelessWidget {
   final String buttonText;
   final bool selected;
   final Function onPressed;
+  final double fontSize;
 
   PercentageButton(
       {@required this.buttonText,
       @required this.onPressed,
-      this.selected = false});
+      this.selected = false,
+      this.fontSize = 20.0});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class PercentageButton extends StatelessWidget {
               color: selected
                   ? PERCENT_BUTTON_TEXT_COLOR_SELECTED
                   : PERCENT_BUTTON_TEXT_COLOR_UNSELECTED,
-              fontSize: 20.0,
+              fontSize: fontSize,
+              letterSpacing: 2.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'Lato'),
         ),

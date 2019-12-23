@@ -12,6 +12,8 @@ class TipDisplay extends StatelessWidget {
   final NumberFormat currencyFormat;
   final NumberFormat percentageFormat;
   final double fontSize;
+  final double amountFontSize;
+  final double labelFontSize;
 
   TipDisplay({
     @required this.tipPercent,
@@ -19,6 +21,8 @@ class TipDisplay extends StatelessWidget {
     @required this.tip,
     @required this.total,
     this.fontSize = 50.0,
+    this.amountFontSize = 18.0,
+    this.labelFontSize = 12.0,
   })  : this.currencyFormat =
             NumberFormat.currency(locale: 'en_US', symbol: '\$'),
         this.percentageFormat = NumberFormat.percentPattern('en_US');
@@ -63,14 +67,20 @@ class TipDisplay extends StatelessWidget {
             TipSubText(
               amount: currencyFormat.format(amount),
               label: 'Before Tip',
+              amountFontSize: amountFontSize,
+              labelFontSize: labelFontSize,
             ),
             TipSubText(
               amount: currencyFormat.format(tip),
               label: 'Tip Amount',
+              amountFontSize: amountFontSize,
+              labelFontSize: labelFontSize,
             ),
             TipSubText(
               amount: percentageFormat.format(tipPercent / 100.0),
               label: 'Tip Percent',
+              amountFontSize: amountFontSize,
+              labelFontSize: labelFontSize,
             ),
           ],
         ),

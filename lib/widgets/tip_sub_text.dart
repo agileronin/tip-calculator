@@ -5,8 +5,14 @@ import '../colors.dart';
 class TipSubText extends StatelessWidget {
   final String amount;
   final String label;
+  final double amountFontSize;
+  final double labelFontSize;
 
-  TipSubText({@required this.amount, @required this.label});
+  TipSubText(
+      {@required this.amount,
+      @required this.label,
+      this.amountFontSize = 18.0,
+      this.labelFontSize = 12.0});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class TipSubText extends StatelessWidget {
                 amount,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+                  fontSize: amountFontSize,
                   fontFamily: 'Lato',
                   letterSpacing: 3.0,
                   color: TIP_SUB_TEXT_COLOR,
@@ -36,7 +42,7 @@ class TipSubText extends StatelessWidget {
               child: Text(
                 label.toUpperCase(),
                 style: TextStyle(
-                    fontSize: 12.0,
+                    fontSize: labelFontSize,
                     fontFamily: 'Lato',
                     color: TIP_SUB_TEXT_COLOR.withOpacity(0.6)),
               ),
