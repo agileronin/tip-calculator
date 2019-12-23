@@ -73,6 +73,7 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
         child: Column(
           children: <Widget>[
             Expanded(
+              flex: 2,
               child: TipDisplay(
                 tipPercent: _tipPercentage,
                 amount: _amount,
@@ -85,6 +86,7 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
               ),
             ),
             Expanded(
+              flex: 3,
               child: Column(
                 children: <Widget>[
                   TipAmountInput(
@@ -105,10 +107,7 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
                     ),
                   ),
                   _buildPercentageButton(
-                    '10%',
-                    10.0,
-                    _widgetScaler.safeBlockHorizontal * 4.0,
-                  ),
+                      '10%', 10.0, _widgetScaler.safeBlockHorizontal * 4.0),
                   _buildPercentageButton(
                       '15%', 15.0, _widgetScaler.safeBlockHorizontal * 4.0),
                   _buildPercentageButton(
