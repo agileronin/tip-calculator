@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../colors.dart';
+
 class TipSubText extends StatelessWidget {
   final String amount;
   final String label;
@@ -21,9 +23,9 @@ class TipSubText extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18.0,
                   fontFamily: 'Lato',
-                  color: Colors.white,
+                  letterSpacing: 3.0,
+                  color: TIP_SUB_TEXT_COLOR,
                 ),
-                // ),
               ),
             ),
           ),
@@ -36,7 +38,7 @@ class TipSubText extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12.0,
                     fontFamily: 'Lato',
-                    color: Colors.white.withOpacity(0.6)),
+                    color: TIP_SUB_TEXT_COLOR.withOpacity(0.6)),
               ),
             ),
           ),

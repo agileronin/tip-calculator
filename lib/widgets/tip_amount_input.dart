@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../colors.dart';
 
 class TipAmountInput extends StatelessWidget {
   final Function amountChanged;
@@ -12,18 +13,18 @@ class TipAmountInput extends StatelessWidget {
       color: Colors.white,
       child: TextFormField(
         controller: controller,
-        cursorColor: Color(0xFF939BA0),
+        cursorColor: TIP_INPUT_CURSOR_COLOR,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: Color(0xFF939BA0),
+          color: TIP_INPUT_COLOR,
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
           filled: true,
-          fillColor: Color(0xFFECF4FA),
-          labelText: 'Total',
+          fillColor: TIP_INPUT_FILL_COLOR,
+          labelText: 'Amount Before Tip',
           labelStyle: TextStyle(
-            color: Color(0xFF939BA0),
+            color: TIP_INPUT_LABEL_COLOR,
           ),
         ),
         textAlign: TextAlign.right,

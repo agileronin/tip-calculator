@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-const TEXT_COLOR_SELECTED = Colors.white;
-const BACKGROUND_COLOR_SELECTED = Color(0xFF25D9A5);
-
-const TEXT_COLOR_UNSELECTED = Color(0xFF25D9A5);
-const BACKGROUND_COLOR_UNSELECTED = Colors.transparent;
+import '../colors.dart';
 
 class PercentageButton extends StatelessWidget {
   final String buttonText;
@@ -22,20 +18,28 @@ class PercentageButton extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color:
-            selected ? BACKGROUND_COLOR_SELECTED : BACKGROUND_COLOR_UNSELECTED,
+        color: selected
+            ? PERCENT_BUTTON_BACKGROUND_COLOR_SELECTED
+            : PERCENT_BUTTON_BACKGROUND_COLOR_UNSELECTED,
         border: Border.all(
-          color: Color(0xFF25D9A5),
+          color: PERCENT_BUTTON_BORDER_COLOR,
         ),
       ),
       width: double.infinity,
       child: FlatButton(
         splashColor: Colors.transparent,
+        highlightColor:
+            PERCENT_BUTTON_BACKGROUND_COLOR_SELECTED.withOpacity(0.2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
         onPressed: () => this.onPressed(),
         child: Text(
           this.buttonText,
           style: TextStyle(
-              color: selected ? TEXT_COLOR_SELECTED : TEXT_COLOR_UNSELECTED,
+              color: selected
+                  ? PERCENT_BUTTON_TEXT_COLOR_SELECTED
+                  : PERCENT_BUTTON_TEXT_COLOR_UNSELECTED,
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'Lato'),

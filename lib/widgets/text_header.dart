@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../colors.dart';
 
 class TextHeader extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class TextHeader extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: 'Lato',
-        color: Color(0xFF939BA0).withOpacity(0.6),
+        color: TEXT_HEADER_COLOR.withOpacity(0.6),
       ),
     );
   }

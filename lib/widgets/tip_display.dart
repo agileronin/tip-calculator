@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import './tip_sub_text.dart';
 import 'package:intl/intl.dart';
 
+import '../colors.dart';
+
 class TipDisplay extends StatelessWidget {
   final double tipPercent;
   final double amount;
@@ -9,12 +11,15 @@ class TipDisplay extends StatelessWidget {
   final double total;
   final NumberFormat currencyFormat;
   final NumberFormat percentageFormat;
-  TipDisplay(
-      {@required this.tipPercent,
-      @required this.amount,
-      @required this.tip,
-      @required this.total})
-      : this.currencyFormat =
+  final double fontSize;
+
+  TipDisplay({
+    @required this.tipPercent,
+    @required this.amount,
+    @required this.tip,
+    @required this.total,
+    this.fontSize = 50.0,
+  })  : this.currencyFormat =
             NumberFormat.currency(locale: 'en_US', symbol: '\$'),
         this.percentageFormat = NumberFormat.percentPattern('en_US');
 
@@ -25,11 +30,7 @@ class TipDisplay extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.topRight,
-          colors: [
-            const Color(0xFF20D5A6),
-            const Color(0xFF1DB9AB),
-            const Color(0xFF19A3AE),
-          ],
+          colors: TIP_DISPLAY_BACKGROUND_COLORS,
         ),
       ),
       width: double.infinity,
@@ -42,7 +43,7 @@ class TipDisplay extends StatelessWidget {
               style: TextStyle(
                 color: Color(0xFFF9FDFE),
                 fontFamily: 'Lato',
-                fontSize: 50.0,
+                fontSize: fontSize,
                 letterSpacing: 5.0,
               ),
             ),
@@ -61,16 +62,15 @@ class TipDisplay extends StatelessWidget {
             ),
             TipSubText(
               amount: currencyFormat.format(amount),
-              label: 'Total',
+              label: 'Before Tip',
             ),
             TipSubText(
               amount: currencyFormat.format(tip),
-              label: 'Tip (\$)',
+              label: 'Tip Amount',
             ),
             TipSubText(
-              // amount: '$tipPercent%',
               amount: percentageFormat.format(tipPercent / 100.0),
-              label: 'Tip (%)',
+              label: 'Tip Percent',
             ),
           ],
         ),
