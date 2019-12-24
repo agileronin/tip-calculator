@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import './tip_sub_text.dart';
+import './text_sub_header.dart';
 import 'package:intl/intl.dart';
 
-import '../colors.dart';
+import '../../constants.dart';
 
-class TipDisplay extends StatelessWidget {
+class CalculationDisplay extends StatelessWidget {
   final double tipPercent;
   final double amount;
   final double tip;
@@ -14,12 +14,16 @@ class TipDisplay extends StatelessWidget {
   final double fontSize;
   final double amountFontSize;
   final double labelFontSize;
+  final Function resetCalculator;
+  final Animation animation;
 
-  TipDisplay({
+  CalculationDisplay({
     @required this.tipPercent,
     @required this.amount,
     @required this.tip,
     @required this.total,
+    @required this.resetCalculator,
+    this.animation,
     this.fontSize = 50.0,
     this.amountFontSize = 18.0,
     this.labelFontSize = 12.0,
@@ -34,7 +38,7 @@ class TipDisplay extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.topRight,
-          colors: TIP_DISPLAY_BACKGROUND_COLORS,
+          colors: kTipDisplayBackgroundColors,
         ),
       ),
       width: double.infinity,
@@ -42,13 +46,33 @@ class TipDisplay extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              this.currencyFormat.format(total),
-              style: TextStyle(
-                color: Color(0xFFF9FDFE),
-                fontFamily: 'Lato',
-                fontSize: fontSize,
-                letterSpacing: 5.0,
+            Container(
+              child: Text(
+                this.currencyFormat.format(total),
+                style: TextStyle(
+                  color: Color(0xFFF9FDFE),
+                  fontFamily: 'Lato',
+                  fontSize: fontSize,
+                  letterSpacing: 5.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(
+                12.0,
+              ),
+              child: RotationTransition(
+                turns: animation,
+                child: FloatingActionButton(
+                  mini: true,
+                  backgroundColor: kPercentButtonBackgroundColorSelected,
+                  elevation: 0.0,
+                  onPressed: resetCalculator,
+                  child: Icon(
+                    Icons.refresh,
+                    color: kPercentButtonTextColorSelected,
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -61,22 +85,19 @@ class TipDisplay extends StatelessWidget {
                 thickness: 1.5,
               ),
             ),
-            SizedBox(
-              height: 12.0,
-            ),
-            TipSubText(
+            TextSubHeader(
               amount: currencyFormat.format(amount),
               label: 'Before Tip',
               amountFontSize: amountFontSize,
               labelFontSize: labelFontSize,
             ),
-            TipSubText(
+            TextSubHeader(
               amount: currencyFormat.format(tip),
               label: 'Tip Amount',
               amountFontSize: amountFontSize,
               labelFontSize: labelFontSize,
             ),
-            TipSubText(
+            TextSubHeader(
               amount: percentageFormat.format(tipPercent / 100.0),
               label: 'Tip Percent',
               amountFontSize: amountFontSize,

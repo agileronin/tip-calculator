@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:tip_calculator/widgets/calculation_display/amount_input.dart';
 
 import '../widgets/widgets.dart';
-import '../widget_scaler.dart';
+import '../utilities/widget_scaler.dart';
 
 class TipCalculatorScreen extends StatefulWidget {
   @override
   _TipCalculatorScreenState createState() => _TipCalculatorScreenState();
 }
 
-class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
-  double _tipPercentage = 20.0;
+class _TipCalculatorScreenState extends State<TipCalculatorScreen>
+    with SingleTickerProviderStateMixin {
+  double _tipPercentage = 0.0;
   double _tip = 0.0;
   double _amount = 0.0;
   double _total = 0.0;
+  AnimationController controller;
+  Animation animation;
+
   MoneyMaskedTextController _amountInputController;
   WidgetScaler _widgetScaler;
 
@@ -27,6 +32,27 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
       thousandSeparator: ',',
       initialValue: 0.00,
     );
+    controller =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((state) {
+        if (state == AnimationStatus.completed) {
+          controller.reset();
+          _resetForm();
+        }
+        if (animation.value.round() == 0.5) {
+          print('Clear form now');
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void _calculateTip() {
@@ -34,9 +60,9 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
     _total = _amount + _tip;
   }
 
-  PercentageButton _buildPercentageButton(
+  OvalButton _buildPercentageButton(
       String buttonText, double tipPercentage, double fontSize) {
-    return PercentageButton(
+    return OvalButton(
       buttonText: buttonText,
       selected: _tipPercentage == tipPercentage,
       fontSize: fontSize,
@@ -56,12 +82,30 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
     return (fontToScreenRatio - resizeRatio) - 2;
   }
 
+  void _resetFormAnimation() {
+    setState(() {
+      controller.forward();
+    });
+  }
+
+  void _resetForm() {
+    _tipPercentage = 0.0;
+    _amount = 0.0;
+    _total = 0.0;
+    _tip = 0.0;
+    _amountInputController.updateValue(0.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     _amountInputController.afterChange = (String _, double amountInput) {
       setState(() {
         _amount = amountInput;
-        _calculateTip();
+        if (_amount > 0.0) {
+          _calculateTip();
+        } else {
+          _resetForm();
+        }
       });
     };
 
@@ -74,7 +118,9 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
           children: <Widget>[
             Expanded(
               flex: 2,
-              child: TipDisplay(
+              child: CalculationDisplay(
+                animation: animation,
+                resetCalculator: _resetFormAnimation,
                 tipPercent: _tipPercentage,
                 amount: _amount,
                 tip: _tip,
@@ -89,7 +135,8 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
               flex: 3,
               child: Column(
                 children: <Widget>[
-                  TipAmountInput(
+                  AmountInput(
+                    labelText: 'Amount Before Tip',
                     fontSize: _widgetScaler.safeBlockHorizontal * 4.0,
                     controller: _amountInputController,
                     amountChanged: (value) {
@@ -121,7 +168,7 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen> {
                       fontSize: _widgetScaler.safeBlockHorizontal * 3.0,
                     ),
                   ),
-                  CustomTipSlider(
+                  CustomSlider(
                     currentValue: _tipPercentage,
                     onSlide: (value) {
                       setState(

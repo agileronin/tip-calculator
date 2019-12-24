@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../../constants.dart';
 
-class TipSubText extends StatelessWidget {
+class TextSubHeader extends StatelessWidget {
   final String amount;
   final String label;
   final double amountFontSize;
   final double labelFontSize;
 
-  TipSubText(
-      {@required this.amount,
-      @required this.label,
-      this.amountFontSize = 18.0,
-      this.labelFontSize = 12.0});
+  TextSubHeader({
+    @required this.amount,
+    @required this.label,
+    this.amountFontSize = 18.0,
+    this.labelFontSize = 12.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +26,8 @@ class TipSubText extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 amount,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                style: kTextSubHeaderStyle.copyWith(
                   fontSize: amountFontSize,
-                  fontFamily: 'Lato',
-                  letterSpacing: 3.0,
-                  color: TIP_SUB_TEXT_COLOR,
                 ),
               ),
             ),
@@ -41,10 +38,10 @@ class TipSubText extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
                 label.toUpperCase(),
-                style: TextStyle(
-                    fontSize: labelFontSize,
-                    fontFamily: 'Lato',
-                    color: TIP_SUB_TEXT_COLOR.withOpacity(0.6)),
+                style: kTextSubHeaderLabelStyle.copyWith(
+                  fontSize: labelFontSize,
+                  color: Colors.white.withOpacity(0.6),
+                ),
               ),
             ),
           ),

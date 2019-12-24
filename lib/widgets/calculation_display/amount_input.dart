@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import '../colors.dart';
+import '../../constants.dart';
 
-class TipAmountInput extends StatelessWidget {
+class AmountInput extends StatelessWidget {
   final Function amountChanged;
   final TextEditingController controller;
+  final String labelText;
   final double fontSize;
 
-  TipAmountInput(
-      {@required this.amountChanged,
-      @required this.controller,
-      this.fontSize = 12.0});
+  AmountInput({
+    @required this.amountChanged,
+    @required this.controller,
+    this.labelText = '',
+    this.fontSize = 12.0,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,20 +21,16 @@ class TipAmountInput extends StatelessWidget {
       color: Colors.white,
       child: TextFormField(
         controller: controller,
-        cursorColor: TIP_INPUT_CURSOR_COLOR,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
+        cursorColor: kAmountInputCursorColor,
+        style: kAmountInputStyle.copyWith(
           fontSize: fontSize,
-          color: TIP_INPUT_COLOR,
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
           filled: true,
-          fillColor: TIP_INPUT_FILL_COLOR,
-          labelText: 'Amount Before Tip',
-          labelStyle: TextStyle(
-            color: TIP_INPUT_LABEL_COLOR,
-          ),
+          fillColor: kAmountInputFillColor,
+          labelText: labelText,
+          labelStyle: kAmountLabelStyle,
         ),
         textAlign: TextAlign.right,
         keyboardType: TextInputType.numberWithOptions(

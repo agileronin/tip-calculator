@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../../constants.dart';
 
 class TransparentRoundSliderThumbShape extends SliderComponentShape {
   const TransparentRoundSliderThumbShape({
@@ -48,7 +48,7 @@ class TransparentRoundSliderThumbShape extends SliderComponentShape {
       radiusTween.evaluate(enableAnimation),
       Paint()
         ..style = PaintingStyle.stroke
-        ..color = TRANSPARENT_ROUND_SLIDER_COLOR
+        ..color = kTransparentRoundSliderColor
         ..strokeWidth = 1.0,
     );
   }
