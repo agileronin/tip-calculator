@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:tip_calculator/screens/test_screen_1.dart';
-import 'package:tip_calculator/screens/test_screen_2.dart';
 
-import './screens/tip_calculator_screen.dart';
+import './screens/discount_calculator.dart';
+import './screens/tip_calculator.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
-  runApp(TipCalculator());
+  runApp(CalculatorApp());
 }
 
-class TipCalculator extends StatefulWidget {
+class CalculatorApp extends StatefulWidget {
   @override
-  _TipCalculatorState createState() => _TipCalculatorState();
+  _CalculatorAppState createState() => _CalculatorAppState();
 }
 
-class _TipCalculatorState extends State<TipCalculator> {
+class _CalculatorAppState extends State<CalculatorApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
@@ -33,11 +32,10 @@ class _TipCalculatorState extends State<TipCalculator> {
         theme: ThemeData.light().copyWith(
           brightness: Brightness.light,
         ),
-        initialRoute: '/',
+        initialRoute: '/tip',
         routes: {
-          '/': (context) => TipCalculatorScreen(),
-          '/test1': (context) => TestScreenOne(),
-          '/test2': (context) => TestScreenTwo()
+          '/tip': (context) => TipCalculator(),
+          // '/discount': (context) => DiscountCalculator(),
         },
       ),
     );

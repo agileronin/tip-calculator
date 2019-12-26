@@ -58,3 +58,9 @@ const TextStyle kOvalButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontFamily: 'Lato',
 );
+
+const TextStyle kCurrencyTextStyle = TextStyle(
+  color: Color(0xFFF9FDFE),
+  fontFamily: 'Lato',
+  letterSpacing: 5.0,
+);
