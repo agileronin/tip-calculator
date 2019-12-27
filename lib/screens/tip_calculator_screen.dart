@@ -6,12 +6,12 @@ import 'package:tip_calculator/widgets/calculation_display/text_sub_header.dart'
 import '../utilities/widget_scaler.dart';
 import '../widgets/widgets.dart';
 
-class TipCalculator extends StatefulWidget {
+class TipCalculatorScreen extends StatefulWidget {
   @override
-  _TipCalculatorState createState() => _TipCalculatorState();
+  _TipCalculatorScreenState createState() => _TipCalculatorScreenState();
 }
 
-class _TipCalculatorState extends State<TipCalculator>
+class _TipCalculatorScreenState extends State<TipCalculatorScreen>
     with SingleTickerProviderStateMixin {
   double _tipPercentage = 0.0;
   double _tip = 0.0;
@@ -179,7 +179,7 @@ class _TipCalculatorState extends State<TipCalculator>
           Padding(
             padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
             child: TextHeader(
-              text: 'Typical Tip Percentages',
+              text: 'Standard Tip Percentages',
               fontSize: _widgetScaler.safeBlockHorizontal * 3.0,
             ),
           ),

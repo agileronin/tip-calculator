@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-import './screens/discount_calculator.dart';
-import './screens/tip_calculator.dart';
+import './screens/discount_calculator_screen.dart';
+import './screens/tip_calculator_screen.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -34,8 +34,8 @@ class _CalculatorAppState extends State<CalculatorApp> {
         ),
         initialRoute: '/tip',
         routes: {
-          '/tip': (context) => TipCalculator(),
-          // '/discount': (context) => DiscountCalculator(),
+          '/tip': (context) => TipCalculatorScreen(),
+          '/discount': (context) => DiscountCalculatorScreen(),
         },
       ),
     );
