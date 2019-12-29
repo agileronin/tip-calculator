@@ -28,8 +28,8 @@ class _CustomSliderState extends State<CustomSlider> {
               activeTrackColor: kSliderActiveTrackColor,
               inactiveTrackColor: kSliderInactiveTrackColor,
               thumbShape: TransparentRoundSliderThumbShape(
-                enabledThumbRadius: 25.0,
-                disabledThumbRadius: 25.0,
+                enabledThumbRadius: 15.0,
+                disabledThumbRadius: 15.0,
               ),
               thumbColor: kSliderThumbColor.withOpacity(0.25),
               trackHeight: 10.0,

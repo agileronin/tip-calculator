@@ -198,24 +198,9 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen>
       return Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
-            child: TextHeader(
-              text: 'Standard Tip Percentages',
-              fontSize: _widgetScaler.safeBlockHorizontal * 3.0,
-            ),
-          ),
-          _buildPercentageButton(
-              '10%', 10.0, _widgetScaler.safeBlockHorizontal * 4.0),
-          _buildPercentageButton(
-              '15%', 15.0, _widgetScaler.safeBlockHorizontal * 4.0),
-          _buildPercentageButton(
-              '20%', 20.0, _widgetScaler.safeBlockHorizontal * 4.0),
-          _buildPercentageButton(
-              '25%', 25.0, _widgetScaler.safeBlockHorizontal * 4.0),
-          Padding(
             padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 5.0),
             child: TextHeader(
-              text: 'Custom Tip Percentage',
+              text: 'Tip Percentage',
               fontSize: _widgetScaler.safeBlockHorizontal * 3.0,
             ),
           ),
@@ -230,6 +215,21 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen>
               );
             },
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+            child: TextHeader(
+              text: 'Standard Tip Percentages',
+              fontSize: _widgetScaler.safeBlockHorizontal * 3.0,
+            ),
+          ),
+          _buildPercentageButton(
+              '10%', 10.0, _widgetScaler.safeBlockHorizontal * 4.0),
+          _buildPercentageButton(
+              '15%', 15.0, _widgetScaler.safeBlockHorizontal * 4.0),
+          _buildPercentageButton(
+              '20%', 20.0, _widgetScaler.safeBlockHorizontal * 4.0),
+          _buildPercentageButton(
+              '25%', 25.0, _widgetScaler.safeBlockHorizontal * 4.0),
         ],
       );
     }
