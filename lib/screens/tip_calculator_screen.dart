@@ -101,6 +101,26 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen>
     _amountInputController.updateValue(0.0);
   }
 
+  Widget _buildRefreshButton() {
+    return Container(
+      padding: EdgeInsets.all(15.0),
+      alignment: Alignment.bottomCenter,
+      child: RotationTransition(
+        turns: animation,
+        child: RawMaterialButton(
+          fillColor: Colors.blue,
+          shape: CircleBorder(),
+          elevation: 5.0,
+          onPressed: _resetFormAnimation,
+          child: Icon(
+            Icons.refresh,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _amountInputController.afterChange = (String _, double amountInput) {
@@ -168,6 +188,7 @@ class _TipCalculatorScreenState extends State<TipCalculatorScreen>
               amountFontSize: _widgetScaler.safeBlockHorizontal * 3.5,
               labelFontSize: _widgetScaler.safeBlockHorizontal * 3.0,
             ),
+            _buildRefreshButton(),
           ],
         ),
       );

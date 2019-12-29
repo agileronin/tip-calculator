@@ -46,19 +46,7 @@ class CalculationDisplay extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...children,
-            Container(
-              padding: EdgeInsets.all(15.0),
-              alignment: Alignment.bottomCenter,
-              child: RawMaterialButton(
-                fillColor: Colors.white,
-                shape: CircleBorder(),
-                elevation: 2.0,
-                onPressed: () {},
-              ),
-            )
-          ],
+          children: children,
         ),
       ),
     );

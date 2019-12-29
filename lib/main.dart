@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-import './screens/discount_calculator_screen.dart';
 import './screens/tip_calculator_screen.dart';
 
 void main() {
@@ -35,7 +34,6 @@ class _CalculatorAppState extends State<CalculatorApp> {
         initialRoute: '/tip',
         routes: {
           '/tip': (context) => TipCalculatorScreen(),
-          '/discount': (context) => DiscountCalculatorScreen(),
         },
       ),
     );
